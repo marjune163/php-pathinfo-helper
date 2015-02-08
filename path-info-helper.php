@@ -1,12 +1,15 @@
 <?php
 
 class PathInfoHelper {
+	public $TargetHost = '';
 	public $RequestURI = '';
 	public $ScriptFile = '';
 	public $DirectoryString = '';
 	public $ParameterString = '';
 	public $Parameters;
 
+	private $fieldHttpXForwardedHost = 'HTTP_X_FORWARDED_HOST';
+	private $fieldHttpHost = 'HTTP_HOST';
 	private $fieldPathInfo = 'PATH_INFO';
 	private $fieldScriptFileName = 'SCRIPT_FILENAME';
 	private $fieldScriptName = 'SCRIPT_NAME';
@@ -16,6 +19,7 @@ class PathInfoHelper {
 	private $searchSign = '?';
 
 	function __construct() {
+		$this->TargetHost = isset($_SERVER[$this->fieldHttpXForwardedHost]) ? $_SERVER[$this->fieldHttpXForwardedHost] : $_SERVER[$this->fieldHttpHost];
 		$this->RequestURI = $_SERVER[$this->fieldRequestUri];
 		$this->ScriptFile = basename($_SERVER[$this->fieldScriptFileName]);
 

@@ -11,6 +11,11 @@ PathInfoHelper is help to make this easier.
 *before using this utility class, need to create an instance first:*  
 *$helper = new PathInfoHelper();*
 
+##Get target request host
+Return the accessable host from outside even behind a proxy
+
+    $helper->TargetHost
+
 ##Get request URI
 This is a shortcut for $_SERVER["REQUEST_URI"];
 
